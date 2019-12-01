@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">Smart Flood System</string>
+    <string name="register_login_details_label">Login Details</string>
+    <string name="register_email_label">Email Address: </string>
+    <string name="register_email_hint">Enter your email address.</string>
+    <string name="register_error_empty_email">Please enter an email address.</string>
+    <string name="register_error_invalid_email">Invalid email address.</string>
+    <string name="register_password_label">Password: </string>
+    <string name="register_password_hint">Enter a password.</string>
+    <string name="register_error_empty_password">Please enter a password.</string>
+    <string name="register_error_invalid_password_length">Your password should contain between 8 to 20 characters.</string>
+    <string name="register_password_repeat_label">Confirm Password: </string>
+    <string name="register_password_repeat_hint">Enter the password again.</string>
+    <string name="register_error_empty_repeat_password">Please reenter your password.</string>
+    <string name="register_error_different_password">Passwords do not match.</string>
+    <string name="register_user_details_label">User Details</string>
+    <string name="register_firstname_label">First Name: </string>
+    <string name="register_firstname_hint">Enter your first name.</string>
+    <string name="register_error_empty_firstname">Please enter your first name.</string>
+    <string name="register_lastname_label">Last Name: </string>
+    <string name="register_lastname_hint">Enter your last name.</string>
+    <string name="register_error_empty_lastname">Please enter your last name.</string>
+    <string name="register_location_label">Select Location</string>
+    <string name="register_error_empty_location">No location selected></string>
+    <string name="register_button">Register</string>
+    <string name="register_error_empty_field">There are empty field(s).</string>
+    <string name="register_error_invalid_field">There are invalid field(s).</string>
+    <string name="register_successful">Account successfully registered.</string>
 </resources>

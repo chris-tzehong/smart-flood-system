@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/water_level_tab"
+        android:title="@string/water_level_tab_title"
+        android:icon="@drawable/ic_action_water_level"/>
+
+    <item
+        android:id="@+id/threads_tab"
+        android:title="@string/threads_tab_title"
+        android:icon="@drawable/ic_action_threads"/>
+
+    <item
+        android:id="@+id/settings_tab"
+        android:title="@string/settings_tab_title"
+        android:icon="@drawable/ic_action_settings"/>
+
+
+</menu>

@@ -1,10 +1,15 @@
 package com.example.smartfloodsystem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,14 +18,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.fragment_container);
+        BottomNavigationView mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_bar);
+        mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.water_level_tab:
+                        Toast.makeText(MainActivity.this, "Water Level", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.threads_tab:
+                        loadFragment(new ThreadsFragment());
+                        break;
+                    case R.id.settings_tab:
+                        loadFragment(new RegisterFragment());
+                        break;
+                }
+                return true;
+            }
+        });
+    }
 
-        if(fragment == null) {
-            fragment = new RegisterFragment();
-            fm.beginTransaction()
-                    .add(R.id.fragment_container, fragment)
-                    .commit();
-        }
+    private void loadFragment(Fragment fragment) {
+        FragmentManager fm = getSupportFragmentManager();
+        fm.beginTransaction().replace(R.id.main_container, fragment).addToBackStack(null).commit();
     }
 }

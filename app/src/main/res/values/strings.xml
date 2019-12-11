@@ -26,4 +26,10 @@
     <string name="register_error_empty_field">There are empty field(s).</string>
     <string name="register_error_invalid_field">There are invalid field(s).</string>
     <string name="register_successful">Account successfully registered.</string>
+    <string name="settings_tab_title">Settings</string>
+    <string name="water_level_tab_title">Water Level</string>
+    <string name="threads_tab_title">Threads</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

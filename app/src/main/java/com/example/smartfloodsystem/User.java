@@ -10,8 +10,18 @@ public class User {
     private String mLastName;
     private String mLocation;
 
+
     public User(){
         mUID = UUID.randomUUID();
+    }
+
+    public User(UUID mUID, String mUserEmail, String mUserPassword, String mFirstName, String mLastName, String mLocation) {
+        this.mUID = mUID;
+        this.mUserEmail = mUserEmail;
+        this.mUserPassword = mUserPassword;
+        this.mFirstName = mFirstName;
+        this.mLastName = mLastName;
+        this.mLocation = mLocation;
     }
 
     public UUID getUID(){

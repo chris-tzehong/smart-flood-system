@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "682305397520",
+    "firebase_url": "https://smart-flood-system.firebaseio.com",
+    "project_id": "smart-flood-system",
+    "storage_bucket": "smart-flood-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:682305397520:android:18f5a4f9839638662c7b95",
+        "android_client_info": {
+          "package_name": "com.example.smartfloodsystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "682305397520-geojg4o6s1cbjs9ss2mun8q0c42uvolm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.smartfloodsystem",
+            "certificate_hash": "b02b9053a0035cf621e25c779a7af7ff3941278b"
+          }
+        },
+        {
+          "client_id": "682305397520-kkif6sof7434kdbjrtp2rv1n70ssme1k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ-P2Z7pXrBjalpanrjuFa4mDIxtyUqlY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "682305397520-kkif6sof7434kdbjrtp2rv1n70ssme1k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

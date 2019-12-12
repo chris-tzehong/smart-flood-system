@@ -3,19 +3,14 @@ package com.example.smartfloodsystem;
 import java.util.UUID;
 
 public class User {
-    private UUID mUID;
+    private String mUID;
     private String mUserEmail;
     private String mUserPassword;
     private String mFirstName;
     private String mLastName;
     private String mLocation;
 
-
-    public User(){
-        mUID = UUID.randomUUID();
-    }
-
-    public User(UUID mUID, String mUserEmail, String mUserPassword, String mFirstName, String mLastName, String mLocation) {
+    public User(String mUID, String mUserEmail, String mUserPassword, String mFirstName, String mLastName, String mLocation) {
         this.mUID = mUID;
         this.mUserEmail = mUserEmail;
         this.mUserPassword = mUserPassword;
@@ -24,7 +19,11 @@ public class User {
         this.mLocation = mLocation;
     }
 
-    public UUID getUID(){
+    public void setUserID (String userID) {
+        mUID = userID;
+    }
+
+    public String getUID(){
         return mUID;
     }
 

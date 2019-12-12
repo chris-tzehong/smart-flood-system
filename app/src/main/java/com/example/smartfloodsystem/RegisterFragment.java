@@ -18,9 +18,17 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.UUID;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class RegisterFragment extends Fragment {
     private User mUser;
@@ -33,6 +41,7 @@ public class RegisterFragment extends Fragment {
     private Spinner mLocationField;
     private Drawable mWarningIcon;
     private Button mRegisterButton;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
     @Override
@@ -233,27 +242,43 @@ public class RegisterFragment extends Fragment {
                 }
                 else
                 {
-                    User user = new User();
+                    String mUID = UUID.randomUUID().toString();
 
-                    UUID UID = user.getUID();
-                    user.setUserEmail(mEmailField.getText().toString());
-                    user.setUserPassword(mPasswordRepeatField.getText().toString());
-                    user.setUserFirstName(mFirstNameField.getText().toString());
-                    user.setUserLastName(mLastNameField.getText().toString());
-                    user.setUserLocation(mLocationField.getSelectedItem().toString());
+                    User user = new User(mUID, mEmailField.getText().toString(), mPasswordRepeatField.getText().toString(), mFirstNameField.getText().toString(), mLastNameField.getText().toString(), mLocationField.getSelectedItem().toString());
 
-                    //Log.d("myApp", mLocationField.getSelectedItem().toString());
+//                    user.setUserID(mUID);
+//                    user.setUserEmail(mEmailField.getText().toString());
+//                    user.setUserPassword(mPasswordRepeatField.getText().toString());
+//                    user.setUserFirstName(mFirstNameField.getText().toString());
+//                    user.setUserLastName(mLastNameField.getText().toString());
+//                    user.setUserLocation(mLocationField.getSelectedItem().toString());
 
-                    AlertDialog.Builder alertDialogBuilder_2 = new AlertDialog.Builder(getActivity());
-                    alertDialogBuilder_2.setMessage(R.string.register_successful);
-                    alertDialogBuilder_2.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                    db.collection("users")
+                            .add(user)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Log.d("myApp", "DocumentSnapshot written with ID: " + documentReference.getId());
+                                    //Log.d("myApp", mLocationField.getSelectedItem().toString());
 
-                        }
-                    });
-                    AlertDialog alertDialog_2 = alertDialogBuilder_2.create();
-                    alertDialog_2.show();
+                                    AlertDialog.Builder alertDialogBuilder_2 = new AlertDialog.Builder(getActivity());
+                                    alertDialogBuilder_2.setMessage(R.string.register_successful);
+                                    alertDialogBuilder_2.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                        }
+                                    });
+                                    AlertDialog alertDialog_2 = alertDialogBuilder_2.create();
+                                    alertDialog_2.show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w("myApp", "Error adding document", e);
+                                }
+                            });
                 }
             }
         });

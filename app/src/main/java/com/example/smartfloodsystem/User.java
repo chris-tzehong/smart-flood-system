@@ -10,6 +10,10 @@ public class User {
     private String mLastName;
     private String mLocation;
 
+    public User() {
+
+    }
+
     public User(String mUID, String mUserEmail, String mUserPassword, String mFirstName, String mLastName, String mLocation) {
         this.mUID = mUID;
         this.mUserEmail = mUserEmail;

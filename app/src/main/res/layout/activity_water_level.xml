@@ -4,13 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context=".WaterLevel">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Water Level"
+            android:textSize="25sp"
+            android:textColor="@android:color/black"
+            />
 
     <me.itangqi.waveloadingview.WaveLoadingView
         android:id="@+id/waveLoadingView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         app:wlv_borderColor="@color/colorPrimary"
         app:wlv_borderWidth="3dp"
         app:wlv_shapeType="circle"
@@ -36,5 +52,5 @@
         app:wlv_waveColor="@color/colorPrimary"
 
         />
-
+    </LinearLayout>
 </LinearLayout>

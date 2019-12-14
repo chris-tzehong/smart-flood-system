@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.water_level_tab:
-                        Toast.makeText(MainActivity.this, "Water Level", Toast.LENGTH_SHORT).show();
+                        loadFragment(new WaterLevel());
                         break;
                     case R.id.threads_tab:
                         loadFragment(new ThreadsFragment());

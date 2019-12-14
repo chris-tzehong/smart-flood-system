@@ -1,36 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:gravity="center_horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ThreadsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:orientation="horizontal">
 
-        <SearchView
-            android:id="@+id/threads_search"
+        <TextView
+            android:id="@+id/thread_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:iconifiedByDefault="false"
-            android:contentDescription="Search"
-            android:queryHint="Filter by Location/Title"/>
-
-        <ImageButton
-            android:id="@+id/threads_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="Add"
-            android:background="@drawable/ic_add_box_green_24dp"
-            android:layout_marginStart="5dp"
-            android:padding="20dp"/>
-
+            android:text="Thread Title:"/>
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thread Image"/>
+
+    <ImageView
+        android:id="@+id/thread_imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Thread Image (Optional)"
+        android:src="@drawable/ic_add_a_photo_green_24dp"
+        android:padding="30dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/thread_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thread Content:"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/thread_comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thread Comments:"/>
+
+        <Button
+            android:id="@+id/button_addComments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Comments"/>
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/threads_recycler_view"
+        android:id="@+id/thread_comments_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"/>

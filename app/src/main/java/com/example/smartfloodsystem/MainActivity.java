@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Water Level", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.threads_tab:
-                        loadFragment(new ThreadsFragment());
+                        loadFragment(new ThreadsPageFragment());
                         break;
                     case R.id.settings_tab:
                         loadFragment(new RegisterFragment());

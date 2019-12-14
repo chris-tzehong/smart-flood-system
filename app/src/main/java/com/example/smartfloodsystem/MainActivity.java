@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
                         loadFragment(new WaterLevel());
                         break;
                     case R.id.threads_tab:
-                        loadFragment(new ThreadsFragment());
+                        loadFragment(new ThreadsPageFragment());
                         break;
                     case R.id.settings_tab:
                         loadFragment(new RegisterFragment());

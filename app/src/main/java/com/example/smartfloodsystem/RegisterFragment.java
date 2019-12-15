@@ -17,7 +17,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -30,6 +29,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import android.widget.Toast;
 
 import java.util.UUID;
 
@@ -45,9 +45,9 @@ public class RegisterFragment extends Fragment {
     private EditText mLastNameField;
     private Spinner mLocationField;
     private Drawable mWarningIcon;
-    private Button mRegisterButton;
-    private FirebaseAuth mAuth;
+    private Button mRegisterButton, mSignButton;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseAuth mAuth;
 
 
     @Override
@@ -61,6 +61,20 @@ public class RegisterFragment extends Fragment {
 
         mWarningIcon = (Drawable) getResources().getDrawable(R.drawable.ic_alert_red_icon);
         mWarningIcon.setBounds(0,0, mWarningIcon.getIntrinsicWidth(), mWarningIcon.getIntrinsicHeight());
+
+        mSignButton = (Button) v.findViewById(R.id.btnSignin);
+
+        mSignButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                SignInFragment sf = new SignInFragment ();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.main_container, sf)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
 
         mEmailField = (EditText) v.findViewById(R.id.user_email);
         mEmailField.addTextChangedListener(new TextWatcher() {
@@ -233,7 +247,7 @@ public class RegisterFragment extends Fragment {
                     alertDialog.show();
                 }
                 else if (mEmailField.getText().toString() == "" || mPasswordField.getText().toString() == "" || mPasswordRepeatField.getText().toString() == ""
-                 || mFirstNameField.getText().toString() == "" || mLastNameField.getText().toString() == "")
+                        || mFirstNameField.getText().toString() == "" || mLastNameField.getText().toString() == "")
                 {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
                     alertDialogBuilder.setMessage(R.string.register_error_empty_field);
@@ -265,9 +279,12 @@ public class RegisterFragment extends Fragment {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 Log.d("Register", "Success");
+                                Toast.makeText(getActivity(), "Registered", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
+
+
 
                     db.collection("users")
                             .add(user)

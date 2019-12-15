@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +24,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -117,10 +121,12 @@ public class NewThreadsFragment extends Fragment {
                 mThread.setmThreadTitle(mThreadTitle.getText().toString());
                 mThread.setmThreadDate(date);
                 mThread.setmThreadContent(mThreadContent.getText().toString());
+                mThread.setmPostUserName(SignInFragment.sCurrentUser.getUserFirstName() + " " + SignInFragment.sCurrentUser.getUserLastName());
                 if(mImageUri != null) {
                     uploadImage();
                 }
                 postThread(mThread);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new ThreadsPageFragment()).addToBackStack(null).commit();
 
 
             }
@@ -137,6 +143,16 @@ public class NewThreadsFragment extends Fragment {
                 .addToBackStack(null)
                 .commit();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("threads").add(threads).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentReference> task) {
+                if (task.isSuccessful()) {
+                    Log.d("Add Threads", "Success");
+                } else {
+                    Log.d("Add Threads", "Failure");
+                }
+            }
+        });
 
     }
 

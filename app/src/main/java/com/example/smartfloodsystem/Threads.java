@@ -10,18 +10,20 @@ public class Threads {
     private Date mThreadDate;
     private String mThreadImageUri;
     private HashMap<String, String> mThreadComment;
+    private String mPostUserName;
 
     public Threads() {
 
     }
 
 
-    public Threads(String mThreadTitle, String mThreadContent, Date mThreadDate, String mThreadImageUri, HashMap<String, String> mThreadComment) {
+    public Threads(String mThreadTitle, String mThreadContent, Date mThreadDate, String mThreadImageUri, HashMap<String, String> mThreadComment, String mPostUserName) {
         this.mThreadTitle = mThreadTitle;
         this.mThreadContent = mThreadContent;
         this.mThreadDate = mThreadDate;
         this.mThreadImageUri = mThreadImageUri;
         this.mThreadComment = mThreadComment;
+        this.mPostUserName = mPostUserName;
     }
 
     public String getmThreadTitle() {
@@ -58,6 +60,14 @@ public class Threads {
 
     public HashMap<String, String> getmThreadComment() {
         return mThreadComment;
+    }
+
+    public String getmPostUserName() {
+        return mPostUserName;
+    }
+
+    public void setmPostUserName(String mPostUserName) {
+        this.mPostUserName = mPostUserName;
     }
 
     public void setmThreadComment(HashMap<String, String> mThreadComment) {

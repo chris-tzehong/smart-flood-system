@@ -1,10 +1,8 @@
 package com.example.smartfloodsystem;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,17 +19,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Source;
-
-import java.util.UUID;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import static android.content.ContentValues.TAG;
 
@@ -43,6 +37,7 @@ public class SignInFragment extends Fragment {
     private Drawable mWarningIcon;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth;
+    public static User sCurrentUser;
 
 
     @Override
@@ -144,7 +139,17 @@ public class SignInFragment extends Fragment {
                                     Log.d(TAG, "signInWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     Toast.makeText(getActivity(), "Successfully logged in.", Toast.LENGTH_SHORT).show();
-
+                                    db.collection("users").whereEqualTo("userEmail", txtEmail.getText().toString()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            if (task.isSuccessful()) {
+                                                for (QueryDocumentSnapshot documentSnapshot: task.getResult()) {
+                                                    sCurrentUser = documentSnapshot.toObject(User.class);
+                                                }
+                                            }
+                                        }
+                                    });
+                                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new RegisterFragment()).addToBackStack(null).commit();
 
 
                                 } else {

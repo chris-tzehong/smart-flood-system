@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
@@ -63,9 +64,23 @@
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"/>
 
-    <Button
-        android:id="@+id/register_button"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/register_button"/>
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/register_button"
+            android:layout_width="141dp"
+            android:layout_height="wrap_content"
+            android:text="@string/register_button"
+            android:layout_alignParentRight="true"/>
+
+        <Button
+            android:id="@+id/btnSignin"
+            android:layout_width="141dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="Sign In" />
+    </RelativeLayout>
+
 </LinearLayout>

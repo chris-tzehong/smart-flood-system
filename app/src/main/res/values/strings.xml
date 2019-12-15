@@ -29,13 +29,12 @@
     <string name="settings_tab_title">Settings</string>
     <string name="water_level_tab_title">Water Level</string>
     <string name="threads_tab_title">Threads</string>
+    <string name="new_threads_confirm">Confirm</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+<<<<<<< HEAD
     <string name="thread_image">Thread Image</string>
-    <string name="thread_title">Thread Title</string>
-    <string name="username">Username</string>
-    <string name="thread_date">Thread Date</string>
     <string name="search">Search</string>
     <string name="add">Add</string>
     <string name="add_comments">Add Comments</string>
@@ -45,4 +44,9 @@
     <string name="post_thread">Post Thread</string>
     <string name="new_thread_details">New Thread Details</string>
     <string name="comments_number">Comments Number</string>
+=======
+    <string name="thread_page_thread_title">Thread Title</string>
+    <string name="threads_page_by_user">by %1$s</string>
+    <string name="threads_page_thread_date">Date</string>
+>>>>>>> master
 </resources>

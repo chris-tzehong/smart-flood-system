@@ -259,13 +259,12 @@ public class RegisterFragment extends Fragment {
 //                    user.setUserLastName(mLastNameField.getText().toString());
 //                    user.setUserLocation(mLocationField.getSelectedItem().toString());
 
+                    mAuth = FirebaseAuth.getInstance();
                     mAuth.createUserWithEmailAndPassword(mEmailField.getText().toString(), mPasswordField.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 Log.d("Register", "Success");
-                            } else {
-                                Toast.makeText(getActivity(), "Failed to register user.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

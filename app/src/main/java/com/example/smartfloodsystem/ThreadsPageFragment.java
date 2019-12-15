@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.SearchView;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 
 public class ThreadsPageFragment extends Fragment {
     private SearchView mSearchThread;
@@ -52,6 +54,9 @@ public class ThreadsPageFragment extends Fragment {
         });
 
         mRecyclerThreadsView = (RecyclerView) v.findViewById(R.id.threads_recycler_view);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        
 
         return v;
     }

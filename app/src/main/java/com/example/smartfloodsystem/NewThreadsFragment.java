@@ -120,7 +120,7 @@ public class NewThreadsFragment extends Fragment {
                 if(mImageUri != null) {
                     uploadImage();
                 }
-                postThread();
+                postThread(mThread);
 
 
             }
@@ -130,12 +130,14 @@ public class NewThreadsFragment extends Fragment {
         return v;
     }
 
-    private void postThread() {
+    private void postThread(Threads threads) {
         ThreadsPageFragment threadsPageFragment = new ThreadsPageFragment();
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main_container, threadsPageFragment)
                 .addToBackStack(null)
                 .commit();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     }
 
     private void selectImageOptions (Context context) {

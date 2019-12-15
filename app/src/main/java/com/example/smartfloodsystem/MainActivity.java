@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.water_level_tab:
-                        loadFragment(new WaterLevelFragment());;
+                        loadFragment(new WaterLevelFragment());
                         break;
                     case R.id.threads_tab:
                         loadFragment(new ThreadsPageFragment());

@@ -16,7 +16,7 @@
             android:id="@+id/thread_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thread Title:"/>
+            android:text="@string/thread_title"/>
 
     </LinearLayout>
     <LinearLayout
@@ -27,13 +27,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thread Image"/>
+        android:text="@string/thread_image"/>
 
     <ImageView
         android:id="@+id/thread_imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="Thread Image (Optional)"
+        android:contentDescription="@string/thread_image_optional"
         android:src="@drawable/ic_add_a_photo_green_24dp"
         android:padding="30dp"/>
 
@@ -48,7 +48,7 @@
             android:id="@+id/thread_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thread Content:"/>
+            android:text="@string/thread_content"/>
 
     </LinearLayout>
 
@@ -61,13 +61,13 @@
             android:id="@+id/thread_comments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thread Comments:"/>
+            android:text="@string/thread_comments"/>
 
         <Button
             android:id="@+id/button_addComments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Comments"/>
+            android:text="@string/add_comments"/>
 
     </LinearLayout>
 

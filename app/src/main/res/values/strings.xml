@@ -32,4 +32,17 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="thread_image">Thread Image</string>
+    <string name="thread_title">Thread Title</string>
+    <string name="username">Username</string>
+    <string name="thread_date">Thread Date</string>
+    <string name="search">Search</string>
+    <string name="add">Add</string>
+    <string name="add_comments">Add Comments</string>
+    <string name="thread_comments">Thread Comments:</string>
+    <string name="thread_content">Thread Content:</string>
+    <string name="thread_image_optional">Thread Image (Optional)</string>
+    <string name="post_thread">Post Thread</string>
+    <string name="new_thread_details">New Thread Details</string>
+    <string name="comments_number">Comments Number</string>
 </resources>

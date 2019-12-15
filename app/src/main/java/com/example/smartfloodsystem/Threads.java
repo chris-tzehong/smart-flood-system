@@ -1,29 +1,33 @@
 package com.example.smartfloodsystem;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-public class Threads {
+public class Threads implements Serializable {
 
     private String mThreadTitle;
     private String mThreadContent;
     private Date mThreadDate;
     private String mThreadImageUri;
-    private HashMap<String, String> mThreadComment;
+    private ArrayList<HashMap<String, String>> mThreadComment;
     private String mPostUserName;
+    private String mThreadId;
 
     public Threads() {
 
     }
 
 
-    public Threads(String mThreadTitle, String mThreadContent, Date mThreadDate, String mThreadImageUri, HashMap<String, String> mThreadComment, String mPostUserName) {
+    public Threads(String mThreadTitle, String mThreadContent, Date mThreadDate, String mThreadImageUri, ArrayList<HashMap<String, String>> mThreadComment, String mPostUserName, String mThreadId) {
         this.mThreadTitle = mThreadTitle;
         this.mThreadContent = mThreadContent;
         this.mThreadDate = mThreadDate;
         this.mThreadImageUri = mThreadImageUri;
         this.mThreadComment = mThreadComment;
         this.mPostUserName = mPostUserName;
+        this.mThreadId = mThreadId;
     }
 
     public String getmThreadTitle() {
@@ -58,7 +62,7 @@ public class Threads {
         this.mThreadImageUri = mThreadImageUri;
     }
 
-    public HashMap<String, String> getmThreadComment() {
+    public ArrayList<HashMap<String, String>> getmThreadComment() {
         return mThreadComment;
     }
 
@@ -70,7 +74,15 @@ public class Threads {
         this.mPostUserName = mPostUserName;
     }
 
-    public void setmThreadComment(HashMap<String, String> mThreadComment) {
+    public void setmThreadComment(ArrayList<HashMap<String, String>> mThreadComment) {
         this.mThreadComment = mThreadComment;
+    }
+
+    public String getmThreadId() {
+        return mThreadId;
+    }
+
+    public void setmThreadId(String mThreadId) {
+        this.mThreadId = mThreadId;
     }
 }

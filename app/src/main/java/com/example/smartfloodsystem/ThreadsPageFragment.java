@@ -152,7 +152,7 @@ public class ThreadsPageFragment extends Fragment {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new ThreadsFragment()).addToBackStack(null).commit();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_container, ThreadsFragment.newThreadsFragment(mThreads)).addToBackStack(null).commit();
                 }
             });
 

@@ -136,22 +136,22 @@ public class NewThreadsFragment extends Fragment {
         return v;
     }
 
-    private void postThread(Threads threads) {
+    private void postThread(final Threads threads) {
         ThreadsPageFragment threadsPageFragment = new ThreadsPageFragment();
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main_container, threadsPageFragment)
                 .addToBackStack(null)
                 .commit();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("threads").add(threads).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("threads").add(threads).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
-            public void onComplete(@NonNull Task<DocumentReference> task) {
-                if (task.isSuccessful()) {
-                    Log.d("Add Threads", "Success");
-                } else {
-                    Log.d("Add Threads", "Failure");
-                }
-            }
+            public void onSuccess(DocumentReference documentReference) {
+                db.collection("threads").document(documentReference.getId()).update("mThreadId", documentReference.getId()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Thread Add", "Success");
+                    }
+                });            }
         });
 
     }

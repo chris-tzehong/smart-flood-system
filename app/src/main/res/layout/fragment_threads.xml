@@ -36,17 +36,29 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/thread_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Thread Image" />
+                android:text="Thread Location"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/thread_imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="Thread Image (Optional)"
-                android:padding="30dp"
-                android:src="@drawable/ic_add_a_photo_green_24dp" />
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_add_a_photo_green_24dp"
+                android:maxHeight="200dp"/>
 
         </LinearLayout>
 

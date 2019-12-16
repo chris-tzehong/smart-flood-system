@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -47,19 +49,6 @@ public class ThreadsPageFragment extends Fragment {
         mRecyclerThreadsView = (RecyclerView) v.findViewById(R.id.threads_recycler_view);
         mRecyclerThreadsView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mSearchThread = (SearchView) v.findViewById(R.id.threads_search);
-        mSearchThread.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-
-        });
 
         mAddThread = (ImageButton) v.findViewById(R.id.threads_add);
         mAddThread.setOnClickListener(new View.OnClickListener() {
@@ -97,10 +86,26 @@ public class ThreadsPageFragment extends Fragment {
                     Threads mThread = document.toObject(Threads.class);
                     mThreads.add(mThread);
                 }
-                ThreadsAdapter threadsAdapter = new ThreadsAdapter(mThreads);
+                final ThreadsAdapter threadsAdapter = new ThreadsAdapter(mThreads);
                 mRecyclerThreadsView.setAdapter(threadsAdapter);
+                mSearchThread.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+                    @Override
+                    public boolean onQueryTextSubmit(String s) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        threadsAdapter.getFilter().filter(newText);
+                        return false;
+                    }
+
+                });
+
             }
         });
+
 
 
         return v;
@@ -112,12 +117,14 @@ public class ThreadsPageFragment extends Fragment {
         super.onDestroy();
     }
 
-    private class ThreadsAdapter extends RecyclerView.Adapter<ThreadsHolder> {
+    private class ThreadsAdapter extends RecyclerView.Adapter<ThreadsHolder> implements Filterable {
 
         private List<Threads> mThreads;
+        private List<Threads> mThreadsFilterAll;
 
         public ThreadsAdapter(List<Threads> threads) {
             mThreads = threads;
+            mThreadsFilterAll = new ArrayList<>(threads);
         }
 
         @NonNull
@@ -137,6 +144,47 @@ public class ThreadsPageFragment extends Fragment {
         public int getItemCount() {
             return mThreads.size();
         }
+
+        @Override
+        public Filter getFilter() {
+            return threadsFilter;
+        }
+
+        private Filter threadsFilter = new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                List<Threads> filteredList = new ArrayList<>();
+
+                if (charSequence == null || charSequence.length() == 0) {
+                    filteredList.addAll(mThreadsFilterAll);
+
+                } else {
+                    String filterInput = charSequence.toString().toLowerCase().trim();
+
+                    for (Threads thread : mThreadsFilterAll) {
+                        if (thread.getmThreadTitle().toLowerCase().contains(filterInput) && !filteredList.contains(thread)) {
+                            filteredList.add(thread);
+                        }
+
+                        if (thread.getmThreadLocation().toLowerCase().contains(filterInput) && !filteredList.contains(thread)) {
+                            filteredList.add(thread);
+                        }
+                    }
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filteredList;
+
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                mThreads.clear();
+                mThreads.addAll((List) filterResults.values);
+                notifyDataSetChanged();
+            }
+        };
     }
 
     private class ThreadsHolder extends RecyclerView.ViewHolder {
@@ -146,6 +194,7 @@ public class ThreadsPageFragment extends Fragment {
         private TextView mThreadsPageThreadsTitle;
         private TextView mThreadsPageThreadsDate;
         private TextView mThreadsPageThreadsByWho;
+        private TextView mThreadsPageThreadsAtWhere;
 
         public ThreadsHolder(LayoutInflater layoutInflater, ViewGroup parent) {
             super(layoutInflater.inflate(R.layout.list_item_threads, parent, false));
@@ -159,6 +208,7 @@ public class ThreadsPageFragment extends Fragment {
             mThreadsPageThreadsTitle = (TextView) itemView.findViewById(R.id.threads_page_threads_title);
             mThreadsPageThreadsDate = (TextView) itemView.findViewById(R.id.threads_page_threads_date);
             mThreadsPageThreadsByWho = (TextView) itemView.findViewById(R.id.threads_page_threads_by_who);
+            mThreadsPageThreadsAtWhere = (TextView) itemView.findViewById(R.id.threads_page_threads_at_where);
         }
 
         public void bind(Threads threads) {
@@ -167,6 +217,8 @@ public class ThreadsPageFragment extends Fragment {
             mThreadsPageThreadsDate.setText(mThreads.getmThreadDate().toString());
             String textForUser = getResources().getString(R.string.threads_page_by_user, mThreads.getmPostUserName());
             mThreadsPageThreadsByWho.setText(textForUser);
+            String textForLocation = getResources().getString(R.string.threads_page_thread_at_location, mThreads.getmThreadLocation());
+            mThreadsPageThreadsAtWhere.setText(textForLocation);
         }
     }
 

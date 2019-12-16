@@ -36,4 +36,5 @@
     <string name="thread_page_thread_title">Thread Title</string>
     <string name="threads_page_by_user">by %1$s</string>
     <string name="threads_page_thread_date">Date</string>
+    <string name="threads_page_thread_at_location">at %1$s</string>
 </resources>

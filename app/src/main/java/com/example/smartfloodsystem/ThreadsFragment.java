@@ -20,11 +20,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -33,6 +36,7 @@ import java.util.Set;
 
 public class ThreadsFragment extends Fragment {
     private TextView mThreadTitle;
+    private TextView mThreadLocation;
     private ImageView mThreadImage;
     private TextView mThreadContent;
     private Button mAddComments;
@@ -54,9 +58,13 @@ public class ThreadsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_threads, container, false);
 
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+
         mThreadTitle = (TextView) v.findViewById(R.id.thread_title);
+        mThreadLocation = (TextView) v.findViewById(R.id.thread_location);
         mThreadImage = (ImageView) v.findViewById(R.id.thread_imageView);
         mThreadContent = (TextView) v.findViewById(R.id.thread_content);
+        mThreadLocation = (TextView) v.findViewById(R.id.thread_location);
         mThreadAddCommentEditText = (EditText) v.findViewById(R.id.threads_add_comment_edit_text);
         mAddComments = (Button) v.findViewById(R.id.threads_add_comments_button);
         mThreadComments = (RecyclerView) v.findViewById(R.id.thread_comments_recycler_view);
@@ -67,6 +75,11 @@ public class ThreadsFragment extends Fragment {
         final Threads threads = (Threads) getArguments().getSerializable(newThreadsTitle);
         mThreadTitle.setText(threads.getmThreadTitle());
         mThreadContent.setText(threads.getmThreadContent());
+        if(threads.getmThreadImageUri() != null) {
+            Glide.with(getActivity().getApplicationContext())
+                    .load(threads.getmThreadImageUri())
+                    .into(mThreadImage);
+        }
 
         CommentsAdapter commentsAdapter = new CommentsAdapter(threads.getmThreadComment());
         mThreadComments.setAdapter(commentsAdapter);
@@ -125,7 +138,10 @@ public class ThreadsFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            return mComments.size();
+            if (mComments != null) {
+                return mComments.size();
+            }
+            return 0;
         }
     }
 

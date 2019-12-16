@@ -41,6 +41,21 @@
             android:orientation="vertical"
             android:layout_margin="5dp">
 
+            <Spinner
+                android:id="@+id/new_thread_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -73,6 +88,29 @@
                 android:adjustViewBounds="true"
                 android:maxHeight="300dp"
                 android:padding="20dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/uploading_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Uploading Image..."
+                android:visibility="invisible"
+                android:textSize="12sp"/>
 
         </LinearLayout>
         <LinearLayout

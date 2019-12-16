@@ -13,6 +13,7 @@ public class Threads implements Serializable {
     private String mThreadImageUri;
     private ArrayList<HashMap<String, String>> mThreadComment;
     private String mPostUserName;
+    private String mThreadLocation;
     private String mThreadId;
 
     public Threads() {
@@ -20,13 +21,14 @@ public class Threads implements Serializable {
     }
 
 
-    public Threads(String mThreadTitle, String mThreadContent, Date mThreadDate, String mThreadImageUri, ArrayList<HashMap<String, String>> mThreadComment, String mPostUserName, String mThreadId) {
+    public Threads(String mThreadTitle, String mThreadContent, Date mThreadDate, String mThreadImageUri, ArrayList<HashMap<String, String>> mThreadComment, String mPostUserName, String mThreadLocation, String mThreadId) {
         this.mThreadTitle = mThreadTitle;
         this.mThreadContent = mThreadContent;
         this.mThreadDate = mThreadDate;
         this.mThreadImageUri = mThreadImageUri;
         this.mThreadComment = mThreadComment;
         this.mPostUserName = mPostUserName;
+        this.mThreadLocation = mThreadLocation;
         this.mThreadId = mThreadId;
     }
 
@@ -76,6 +78,14 @@ public class Threads implements Serializable {
 
     public void setmThreadComment(ArrayList<HashMap<String, String>> mThreadComment) {
         this.mThreadComment = mThreadComment;
+    }
+
+    public String getmThreadLocation() {
+        return mThreadLocation;
+    }
+
+    public void setmThreadLocation(String mThreadLocation) {
+        this.mThreadLocation = mThreadLocation;
     }
 
     public String getmThreadId() {

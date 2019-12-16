@@ -60,9 +60,9 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
             public void onClick(View view) {
 
                 selectedLocation = searchlocation.getQuery().toString();
-                WaterLevelFragment wf = new WaterLevelFragment ();
+                WaterLevel wl = new WaterLevel ();
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.main_container, wf)
+                        .replace(R.id.main_container, wl)
                         .addToBackStack(null)
                         .commit();
 

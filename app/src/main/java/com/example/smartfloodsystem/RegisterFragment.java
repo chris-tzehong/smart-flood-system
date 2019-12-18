@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -246,8 +247,8 @@ public class RegisterFragment extends Fragment {
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     alertDialog.show();
                 }
-                else if (mEmailField.getText().toString() == "" || mPasswordField.getText().toString() == "" || mPasswordRepeatField.getText().toString() == ""
-                        || mFirstNameField.getText().toString() == "" || mLastNameField.getText().toString() == "")
+                else if (TextUtils.isEmpty(mEmailField.getText().toString()) || TextUtils.isEmpty(mPasswordField.getText().toString()) || TextUtils.isEmpty(mPasswordRepeatField.getText().toString())
+                        || TextUtils.isEmpty(mFirstNameField.getText().toString()) || TextUtils.isEmpty(mLastNameField.getText().toString()))
                 {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
                     alertDialogBuilder.setMessage(R.string.register_error_empty_field);

@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -161,7 +162,7 @@ public class NewThreadsFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if(mThreadTitle.getText() != null && mThreadContent.getText() != null) {
+                if(!TextUtils.isEmpty(mThreadTitle.getText()) && !TextUtils.isEmpty(mThreadContent.getText())) {
                     mThread = new Threads();
                     Date date = new Date();
                     mThread.setmThreadTitle(mThreadTitle.getText().toString());
@@ -177,8 +178,6 @@ public class NewThreadsFragment extends Fragment {
                 } else {
                     Toast.makeText(getActivity(), "There are Empty Fields", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
 

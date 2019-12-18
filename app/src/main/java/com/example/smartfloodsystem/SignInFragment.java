@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -115,10 +116,10 @@ public class SignInFragment extends Fragment {
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
             }
-                else if (txtEmail.getText().toString() == "" || txtPassword.getText().toString() == "" )
+                else if (TextUtils.isEmpty(txtEmail.getText().toString()) || TextUtils.isEmpty(txtPassword.getText().toString()))
             {
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-                alertDialogBuilder.setMessage("The email adress and password must be entered.");
+                alertDialogBuilder.setMessage("The email address and password must be filled.");
                 alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
